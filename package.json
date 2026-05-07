@@ -1,0 +1,26 @@
+{
+  "name": "opencode-rtk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.0.5",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.14.39"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
