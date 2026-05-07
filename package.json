@@ -2,13 +2,14 @@
   "name": "opencode-rtk",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "/dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
@@ -18,9 +19,14 @@
   },
   "type": "module",
   "dependencies": {
-    "@opencode-ai/plugin": "^1.14.39"
+    "@opencode-ai/plugin": "^1.14.39",
+    "tree-sitter": "^0.25.0",
+    "tree-sitter-bash": "^0.25.1",
+    "tree-sitter-pwsh": "^0.38.0"
   },
   "devDependencies": {
+    "@types/bun": "^1.3.13",
+    "@types/node": "^25.6.0",
     "typescript": "^6.0.3"
   }
 }

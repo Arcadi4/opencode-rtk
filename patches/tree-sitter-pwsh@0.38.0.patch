@@ -1,0 +1,19 @@
+diff --git a/bindings/node/index.js b/bindings/node/index.js
+--- a/bindings/node/index.js
++++ b/bindings/node/index.js
+@@ -1,12 +1,11 @@
+ import { readFileSync } from "node:fs";
++import { createRequire } from "node:module";
+ import { fileURLToPath } from "node:url";
+ 
+ const root = fileURLToPath(new URL("../..", import.meta.url));
++const require = createRequire(import.meta.url);
+ 
+-const binding = typeof process.versions.bun === "string"
+-  // Support `bun build --compile` by being statically analyzable enough to find the .node file at build-time
+-  ? await import(`${root}/prebuilds/${process.platform}-${process.arch}/tree-sitter-pwsh.node`)
+-  : (await import("node-gyp-build")).default(root);
++const binding = require("node-gyp-build")(root);
+ 
+ try {
+   const nodeTypes = await import(`${root}/src/node-types.json`, { with: { type: "json" } });
