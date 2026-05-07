@@ -39,7 +39,7 @@ const plugin: Plugin = async (input: PluginInput): Promise<Hooks> => {
         return {};
     }
 
-    let shell: UserShell = await determineUserShell();
+    let shell: UserShell = await getUserShell();
     const commands = new Set(proxiedCommands);
 
     input.client.app.log({
@@ -54,7 +54,7 @@ const plugin: Plugin = async (input: PluginInput): Promise<Hooks> => {
         "tool.execute.before": async (input, output) => {
             if (input.tool !== "bash") { return }
             const original = output.args.command;
-            const transformed = transformCommand(original, commands, shell);
+            const transformed = proxyCommand(original, commands, shell);
             if (transformed !== original) {
                 output.args.command = transformed;
             }
@@ -77,7 +77,7 @@ async function getProxiedCommands(shell: any): Promise<string[]> {
     return proxiedCommands;
 }
 
-async function determineUserShell(): Promise<UserShell> {
+async function getUserShell(): Promise<UserShell> {
     if (!process.env.SHELL) {
         const platform = process.platform;
         if (platform === "win32") {
@@ -122,7 +122,7 @@ function getPwshParser(): Parser {
     return pwshParser;
 }
 
-export function transformCommand(
+export function proxyCommand(
     command: string,
     proxiedCommands: ReadonlySet<string>,
     shell: "bash" | "zsh" | "powershell",
