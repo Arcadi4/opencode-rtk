@@ -1,7 +1,7 @@
 {
-  "name": "opencode-rtk",
-  "version": "1.0.0",
-  "description": "OpenCode plugin that proxies shell commands through rtk to reduce LLM token consumption",
+  "name": "@4rcadia/opencode-rtk",
+  "version": "0.1.0",
+  "description": "OpenCode plugin that proxies shell commands through rtk to reduce LLM token consumption.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
